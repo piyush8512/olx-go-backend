@@ -6,6 +6,7 @@ import ( "net/http"
 		  "time"
 
 	"OLX-API/internal/config"
+	"OLX-API/internal/handlers"
 )
 
 
@@ -16,11 +17,7 @@ func main() {
 
 	mux := http.NewServeMux()  //mux is route handler	
 
-	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json") // set the content type to json
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{"status": "ok"}`)) // write the response body
-	})
+	mux.HandleFunc("GET /healthz", handlers.healthz)
 
 	srv := http.Server{  //server config
 		Addr:         ":"+ cfg.Port,

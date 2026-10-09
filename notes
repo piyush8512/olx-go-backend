@@ -53,4 +53,8 @@
 #-ldflags="-s -w" -- disabling debugger,  in production we use logger, alos reduce the binary size 
 
 
+#railway build cmd
+#go build -tags netgo -ldflags '-s -w' -o app
+#netgo - using go libraries for network code not c
+
 
