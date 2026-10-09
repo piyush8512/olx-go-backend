@@ -1,0 +1,35 @@
+# go init project or package name
+
+# first it creating birnay and then excute
+# to run server - go run main.go
+
+# build cmd
+# go build -o bin/main main.go
+
+# cmd to run in cmd to run binary file
+# tree to see color of that binary 
+# ./bin/main
+
+# now we can use Makefile to build and run the project
+# make build - to build the project
+# make run - to run the project
+
+# make build - to build the project
+# buid:
+# 	go build -o bin/main main.go 
+
+# run:
+# 	./bin/main	
+
+# simplyadding @ to the beginning of the line to make it silent
+# @go build -o bin/main main.go 
+# @./bin/main
+
+# we can also change the folders name of bin 
+# build 
+
+#.PHONY: build run this is used to make the build and run as a phony target
+
+#default target is the first target in the Makefile
+#run:buid
+#	@./bin/main	
