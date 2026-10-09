@@ -35,5 +35,8 @@
 #	@./bin/main	
 
 
-
 # http://localhost:8090/debug/pprof
+
+#for dot env cmd - go get github.com/joho/godotenv   // go dont have any npm like thing fetch directly from source
+
+#cmd - go mod tidy - clean the import thing 
