@@ -50,6 +50,7 @@
 
 #-- parameter
 #trimpath for timmming path for security purposes 
-#-ldflags="-s -w" -- disabling debugger  in production instead using logger
+#-ldflags="-s -w" -- disabling debugger,  in production we use logger, alos reduce the binary size 
+
 
 
