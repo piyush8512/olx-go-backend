@@ -33,3 +33,7 @@
 #default target is the first target in the Makefile
 #run:buid
 #	@./bin/main	
+
+
+
+# http://localhost:8090/debug/pprof
