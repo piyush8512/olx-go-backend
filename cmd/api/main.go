@@ -7,6 +7,7 @@ import ( "net/http"
 
 	"OLX-API/internal/config"
 	"OLX-API/internal/handlers"
+	"OLX-API/internal/db"
 )
 
 
@@ -14,6 +15,11 @@ import ( "net/http"
 func main() {
 
 	cfg:=config.MustLoad()
+
+	db, err := db.Connect(cfg.DatabaseUrl)
+	if err != nil {
+		log.Fatalf("main.db.connect: %v", err)
+	}
 
 	mux := http.NewServeMux()  //mux is route handler	
 

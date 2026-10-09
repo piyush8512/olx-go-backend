@@ -58,3 +58,6 @@
 #netgo - using go libraries for network code not c
 
 
+
+# go mod tidy - this cmd automatically download written but not downloaded yet
+
