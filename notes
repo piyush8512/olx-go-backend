@@ -40,3 +40,16 @@
 #for dot env cmd - go get github.com/joho/godotenv   // go dont have any npm like thing fetch directly from source
 
 #cmd - go mod tidy - clean the import thing 
+
+
+#PRODUCTION
+#BUILD CMD = CGO_ENABLE=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o bin/api ./cmd/api
+#-- envioment variables
+#CGO_ENABLE=0  ( 1 for using c lang for compiles files) 0 for complie by golang 
+#GOOS=linux  for linux machine binaries
+
+#-- parameter
+#trimpath for timmming path for security purposes 
+#-ldflags="-s -w" -- disabling debugger  in production instead using logger
+
+
