@@ -20,11 +20,13 @@ func main() {
 	}
 	defer database.Close()
 
+	lh := handlers.NewListingHandler(database)
+
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /healthz", handlers.Health)
-	mux.Handle("GET /listings", handlers.List(database))
-	mux.HandleFunc("DELETE /listings/{id}", handlers.DeleteListing(database))
+	mux.HandleFunc("GET /listings", lh.List)
+	mux.HandleFunc("DELETE /listings/{id}", lh.Delete)
 
 	srv := http.Server{
 		Addr:         ":" + cfg.Port,
