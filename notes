@@ -61,3 +61,10 @@
 
 # go mod tidy - this cmd automatically download written but not downloaded yet
 
+# cmd for migrating sql schema to database
+#go run ./cmd/migrate 
+#migrate-up  go run ./cmd/migrate up 
+#down-go run ./cmd/migrate down
+
+# cmd to upload migration
+#make migrate-up

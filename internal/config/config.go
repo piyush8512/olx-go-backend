@@ -36,7 +36,7 @@ func MustLoad() Config{
 	return Config{
 		Port: port,
 		Env:  env,
-		DatabaseUrl: dbUrl,
+		DATABASE_URL: dbUrl,
 	}
 
 }
