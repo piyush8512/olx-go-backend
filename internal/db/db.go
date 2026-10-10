@@ -10,7 +10,7 @@ import (
 )
 
 func Connect(databaseUrl string) (*sql.DB, error) {
-	_, err := sql.Open("pgx", databaseUrl)
+	db, err := sql.Open("pgx", databaseUrl)
 	if err != nil {
 		return nil, fmt.Errorf("sql.Open: %w", err)
 	}
