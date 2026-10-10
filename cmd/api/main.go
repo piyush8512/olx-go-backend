@@ -1,41 +1,40 @@
 package main
 
-import ( "net/http"
-	      "log" 
-		  _ "net/http/pprof"
-		  "time"
+import (
+	"log"
+	"net/http"
+	_ "net/http/pprof"
+	"time"
 
 	"OLX-API/internal/config"
-	"OLX-API/internal/handlers"
 	"OLX-API/internal/db"
+	"OLX-API/internal/handlers"
 )
 
-
-
 func main() {
+	cfg := config.MustLoad()
 
-	cfg:=config.MustLoad()
-
-	db, err := db.Connect(cfg.DatabaseUrl)
+	database, err := db.Connect(cfg.DATABASE_URL)
 	if err != nil {
 		log.Fatalf("main.db.connect: %v", err)
 	}
+	defer database.Close()
 
-	mux := http.NewServeMux()  //mux is route handler	
+	mux := http.NewServeMux()
 
-	mux.HandleFunc("GET /healthz", handlers.healthz)
+	mux.HandleFunc("GET /healthz", handlers.Health)
+	mux.Handle("GET /listings", handlers.List(database))
+	mux.HandleFunc("DELETE /listings/{id}", handlers.DeleteListing(database))
 
-	srv := http.Server{  //server config
-		Addr:         ":"+ cfg.Port,
+	srv := http.Server{
+		Addr:         ":" + cfg.Port,
 		Handler:      mux,
 		ReadTimeout:  time.Second * 10,
 		WriteTimeout: time.Second * 30,
 		IdleTimeout:  time.Second * 60,
 	}
 
-	// start the server
 	if err := srv.ListenAndServe(); err != nil {
-		log.Fatalf("Failed to start server: %v", err) // log the error
+		log.Fatalf("failed to start server: %v", err)
 	}
-	
 }
